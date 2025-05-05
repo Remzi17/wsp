@@ -1,0 +1,39 @@
+$arrow-width: 20
+$arrow-height: 20
+
+summary 
+	display: flex
+	justify-content: space-between
+	align-items: center
+	gap: 12px
+	width: 100% 
+	
+	cursor: pointer
+	user-select: none
+	+t
+
+	&::-webkit-details-marker
+		display: none
+
+	&:focus-visible
+		color: $active
+
+	&:after
+		content: ''
+
+		flex: 0 0 #{$arrow-width+px}
+		width: #{$arrow-width+px}
+		height: #{$arrow-height+px}
+		
+		+mask(arrow(), $active) 
+		+t
+
+	&.active  
+		&:after
+			rotate: -180deg
+		
+	&[disabled]
+		&:after
+			display: none
+
+

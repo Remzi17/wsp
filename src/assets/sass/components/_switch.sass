@@ -1,0 +1,104 @@
+$switch-width: 40px
+$switch-height: 20px
+$switch-offset: 3px
+$switch-circle-size: min(17px, #{$switch-height - $switch-offset})
+
+$switch-bg-color: dark($gray, 10%)
+$switch-active-color: $active
+$switch-circle-color: #fff 
+$switch-border-radius: 30px 
+
+$switch-gap: 10px
+	 
+.switch 
+	display: inline-flex
+	align-items: center 
+	gap: $switch-gap
+
+	user-select: none
+	cursor: pointer
+	
+	&__input
+		position: relative
+		display: flex
+		margin: 0
+
+		cursor: pointer 
+
+		&:before
+			content: ''
+
+			width: $switch-width
+			height: $switch-height		
+
+			border-radius: $switch-border-radius
+			background: $switch-bg-color
+			border: 1px solid transparent
+			+t
+			box-sizing: border-box
+
+		&:after
+			content: ''
+
+			position: absolute
+			left: $switch-offset
+			top: 50%
+
+			width: $switch-circle-size
+			height: $switch-circle-size
+			max-height: #{calc(100% - $switch-offset)}
+
+			translate: 0 -50%
+
+			border-radius: 50%
+			background: $switch-circle-color 
+			+t
+
+		&:checked
+			&:before
+				background: $switch-active-color
+			
+			&:after
+				left: #{calc(100% - $switch-offset)}
+				translate: -100% -50%
+
+		&:disabled,
+		&:disabled~.switch__text
+			cursor: not-allowed 
+			opacity: .4  
+
+		&:focus-visible
+			outline: none 
+
+			&:before 
+				border-color: dark($switch-active-color, 20%)
+				
+
+
+
+
+	
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+

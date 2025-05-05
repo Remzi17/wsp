@@ -1,0 +1,22 @@
+[data-tooltip] 
+	position: relative
+
+.tooltip
+	position: absolute
+	z-index: 11
+	+adap('min-width', 240, 180)
+	padding: em(12) em(16)
+
+	background: $gray
+	border-radius: 8px
+
+	+adap('font-size', 16, 12)
+	text-align: center 
+
+	opacity: 0
+	pointer-events: none
+	transition: all .4s
+	
+	&_active
+		opacity: 1
+		pointer-events: auto 

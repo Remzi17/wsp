@@ -1,0 +1,25 @@
+</main>
+
+@@include('footer.html')
+
+</div>
+
+@@include('popups.html')
+
+<!-- Библиотеки -->
+<link rel="preload" href="assets/css/vendor.css" as="style" onload="this.rel='stylesheet'; this.media='all'; this.onload=null;">
+
+<script src="assets/js/vendor.js" defer></script>
+
+<!-- Общие скрипты -->
+<script src="assets/js/script.js" type="module" defer></script>
+
+<script>
+	if (location.hostname !== 'localhost' && 'serviceWorker' in navigator) {
+		navigator.serviceWorker.register('/worker.js').catch(console.error);
+	}
+</script>
+
+</body>
+
+</html>

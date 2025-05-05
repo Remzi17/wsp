@@ -1,0 +1,157 @@
+$close-size: 20
+$close-color: #fff
+
+$font: 17
+$percent: 30 // сколько процентов вычитать в адаптиве
+
+$item-width: 500px
+$item-padding-x: 20
+$item-padding-y: 15
+$item-gap: 5px
+$item-content-gap: 5px 
+$item-border-radius: 5px
+
+$icon-size: 30
+
+$success-color: #4DB886
+$info-color: #83b4ff
+$warning-color: #ffc201
+$danger-color: #efa3aa
+
+.notify 
+	position: fixed
+	right: 20px
+	bottom: 20px
+	z-index: 10
+
+	width: min($item-width, 100%)
+	+scrollbar(100%, $scrollBarWidth: 4, $padding: 5) 
+	padding-left: 9px
+
+	@media (max-width: 575px)
+		right: 0
+		max-height: 70vh	
+
+	&__item
+		position: relative
+		display: grid
+		grid-template: 1fr 1fr / em(calculate($icon-size, $item-padding-x*2), $font) 1fr
+		justify-items: start
+		justify-content: start
+		width: 100%
+
+		font-size: 20px
+		+adap('font-size', $font, minusPercent($percent, $font)) 
+
+		color: #fff
+
+		@if ($item-border-radius != 0)
+			border-radius: $item-border-radius
+
+		&_success
+			background: $success-color
+
+			.notify__item
+				&-left
+					background: darken($success-color, 5%)
+
+				&-icon 
+					outline: 1px solid darken($success-color, 15%)
+					+mask(url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDQ4IDQ4IiBoZWlnaHQ9IjQ4cHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA0OCA0OCIgd2lkdGg9IjQ4cHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxnIGlkPSJMYXllcl8zIj48cGF0aCBkPSJNMjQsMEMxMC43NDUsMCwwLDEwLjc0NSwwLDI0czEwLjc0NSwyNCwyNCwyNHMyNC0xMC43NDUsMjQtMjRTMzcuMjU1LDAsMjQsMHogTTMwLjYyNywyMi45NTdsLTkuNTQsOS41NCAgIGwtMC4wMDUtMC4wMDVsLTAuNTMxLDAuNTI5bC0wLjAwNy0wLjAwNmwtMC4wMDcsMC4wMDZsLTEuMTktMS4xODhsMC4wMDctMC4wMDhsLTcuNzU5LTcuNzU5bDIuMTk1LTIuMTk1bDYuNzY4LDYuNzdsNy44NzUtNy44NzYgICBsLTAuMDA5LTAuMDA5bDUuNzc2LTUuNzc3bDIuMjAxLDIuMjAyTDMwLjYyNywyMi45NTd6IiBmaWxsPSIjMjQxRjIwIi8+PC9nPjwvc3ZnPg==") center / contain no-repeat, $success-color)
+
+		&_info
+			background: $info-color
+
+			.notify__item
+				&-left
+					background: darken($info-color, 10%)
+
+				&-icon 
+					outline: 1px solid darken($info-color, 15%)
+					+mask(url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4IiB3aWR0aD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0OHY0OGgtNDh6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTI0IDRjLTExLjA1IDAtMjAgOC45NS0yMCAyMHM4Ljk1IDIwIDIwIDIwIDIwLTguOTUgMjAtMjAtOC45NS0yMC0yMC0yMHptMiAzMGgtNHYtMTJoNHYxMnptMC0xNmgtNHYtNGg0djR6Ii8+PC9zdmc+") center / contain no-repeat, $info-color)
+
+		&_warning
+			background: $warning-color
+
+			.notify__item
+				&-left
+					background: darken($warning-color, 10%)
+
+				&-icon 
+					outline: 1px solid darken($warning-color, 15%)
+					+mask(url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4IiB3aWR0aD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0OHY0OGgtNDh6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTI0IDRjLTExLjA1IDAtMjAgOC45NS0yMCAyMHM4Ljk1IDIwIDIwIDIwIDIwLTguOTUgMjAtMjAtOC45NS0yMC0yMC0yMHptMiAzMGgtNHYtMTJoNHYxMnptMC0xNmgtNHYtNGg0djR6Ii8+PC9zdmc+") center / contain no-repeat, $warning-color)
+
+		&_danger 
+			background: $danger-color
+
+			.notify__item
+				&-left
+					background: darken($danger-color, 10%)
+
+				&-icon 
+					outline: 1px solid darken($danger-color, 15%)
+					+mask(url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIyNCIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGUvPjxwYXRoIGQ9Ik0xOC4zMjggMTYuOTIyYzEuMDc4LTEuMzU5IDEuNjg4LTMuMDk0IDEuNjg4LTQuOTIyIDAtNC40MDYtMy42MDktOC4wMTYtOC4wMTYtOC4wMTYtMS44MjggMC0zLjU2MyAwLjYwOS00LjkyMiAxLjY4OHpNMTIgMjAuMDE2YzEuODI4IDAgMy41NjMtMC42MDkgNC45MjItMS42ODhsLTExLjI1LTExLjI1Yy0xLjA3OCAxLjM1OS0xLjY4OCAzLjA5NC0xLjY4OCA0LjkyMiAwIDQuNDA2IDMuNjA5IDguMDE2IDguMDE2IDguMDE2ek0xMiAyLjAxNmM1LjUzMSAwIDkuOTg0IDQuNDUzIDkuOTg0IDkuOTg0cy00LjQ1MyA5Ljk4NC05Ljk4NCA5Ljk4NC05Ljk4NC00LjQ1My05Ljk4NC05Ljk4NCA0LjQ1My05Ljk4NCA5Ljk4NC05Ljk4NHoiLz48L3N2Zz4=") center / contain no-repeat, $danger-color)
+
+		&:not(:last-child)
+			margin-bottom: $item-gap
+
+		&-close 
+			position: absolute
+			right: em($item-padding-x, $font) 
+			top: 50%
+			translate: 0 -50%
+
+			user-select: none
+
+			svg 
+				+adap('width', $close-size, minusPercent($percent, $close-size))
+				+adap('height', $close-size, minusPercent($percent, $close-size))
+				width: $close-size
+				height: $close-size
+
+				fill: $close-color
+				pointer-events: none
+
+		&-left 
+			display: grid
+			justify-items: center
+			align-items: center
+			grid-row: span 2
+			width: em(calculate($icon-size, $item-padding-x*2), $font)
+			height: 100%
+
+			@if ($item-border-radius != 0)
+				border-top-left-radius: $item-border-radius
+				border-bottom-left-radius: $item-border-radius
+
+		&-icon 
+			+adap('width', $icon-size, minusPercent($percent, $icon-size))
+			+adap('height', $icon-size, minusPercent($percent, $icon-size))
+
+			background-repeat: no-repeat
+			border-radius: 50%
+			background: #fff 
+
+		&-content
+			max-width: calc(100% - #{$close-size+px}) 
+			width: 100%
+			height: 100%
+			padding: em($item-padding-y, $font) em($item-padding-x, $font)
+			grid-row: span 2
+			display: grid
+			gap: $item-content-gap
+
+		&-title 
+			font-size: 1.2em
+
+		&-text 
+			font-size: 1em
+
+		&-show
+			display: grid
+ 
+
+
+
+
+
