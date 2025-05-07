@@ -69,19 +69,16 @@
 	clip: rect(0 0 0 0)
 	overflow: hidden
 
-// Обрезка текста по строкам
 =line($line: 4)
 	overflow: hidden
 	display: -webkit-box
 	-webkit-box-orient: vertical
 	-webkit-line-clamp: $line
 
-// Стрелка для любых нужд. Можно выводить в background-image и mask-image
 @function arrow($size: contain)
 	@return url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI2LjMuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9ItCh0LvQvtC5XzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA5LjcgNS41IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA5LjcgNS41OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+Cgkuc3Qwe2ZpbGw6bm9uZTtzdHJva2U6I0ZGMDAwMDtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7fQo8L3N0eWxlPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNOSwwLjZMNC44LDQuOEwwLjYsMC42Ii8+Cjwvc3ZnPgo=') center / $size no-repeat
 
 
-	// Треугольник
 =triangle($direction, $sizeX, $sizeY, $color)
 	content: ''
 	display: block
@@ -122,7 +119,6 @@
 		border-width: $sizeY 0 0 $sizeX
 		border-color: transparent transparent transparent $color
 
-// border с помощью box-shadow
 =box-shadow-border($color: #000, $dir: 'all')
 	@if ($dir == 'bottom')
 		box-shadow: 0 1px 0 0 $color
@@ -139,7 +135,6 @@
 	@else if ($dir == 'all')
 		box-shadow: 0 0 0 1px $color
 
-// Градиентный border
 =gradientborder($dir: to right, $color1: red, $color2: black, $borderWidth: 1px)
 	position: relative
 
@@ -153,21 +148,15 @@
 
 		mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0)
 
-// 
-
-// Маска для svg элемента с указанием цвета
 =mask($mask, $color)
 	mask: $mask
 	-webkit-mask: $mask
 	background: $color
 
-
-// Процент от числа percent(30, 1000)
 @function percent($px, $from)
 	$result: math.div($px, $from) * 100%
 	@return $result
 
-// Вычесть процент от числа minusPercent(30, 1000). Хорошо работает с миксином adap. Например, +adap('width', 400, minusPercent(30, 400))
 @function minusPercent($px, $from, $add: false) 
 	$result: $from - ($from * math.div($px, 100))
 
@@ -177,7 +166,6 @@
 	@else 
 		@return #{$result+$add}
 
-// Вычесть процент от числа minusPercent(30, 1000px)
 @function plusPercent($px, $from) 
 	$result: $from + ($from * math.div($px, 100))
 	@return $result
@@ -197,11 +185,9 @@
 	$result: math.div($px, $current) + em
 	@return $result
 
-// CSS аналог sass функции darken($color, $percent)
 @function dark($color, $percent)
 	@return color-mix(in srgb, black $percent, $color)
 
-// CSS аналог sass функции lighten($color, $percent)
 @function light($color, $percent)
 	@return color-mix(in srgb, white $percent, $color) 
 
@@ -386,7 +372,6 @@
 =t($trans: 0.4)
 	transition: all #{$trans + s} 
 
-// Вертикальный скроллбар
 =scrollbar($maxHeight, $scrollBarWidth: 4, $padding: 5) 
 	max-height: $maxHeight 
 
@@ -416,7 +401,6 @@
 		background-color: color.adjust($active, $lightness: 10%)  
 		border-radius: 4px
 
-// Горизонтальный скроллбар
 =scrollbar-x($maxWidth, $scrollBarHeight: 4, $padding: 5)
 	max-width: $maxWidth 
 
